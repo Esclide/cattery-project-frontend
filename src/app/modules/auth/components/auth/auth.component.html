@@ -1,0 +1,79 @@
+<div class="header-content fullheight">
+  <div class="page-header text-center">
+    <h2>Вход в систему</h2>
+    <br>
+    <div class="centered">
+      <input value="ЗАРЕГИСТРИРОВАТЬСЯ" type="submit"  class="button-link-1" [routerLink]="'/auth/sign-up'">
+    </div>
+  </div>
+</div>
+
+<div class="container">
+    <div class="widget contact-widget clearfix">
+      <div *ngIf="error" class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>Ошибка:</strong> {{error}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+          <form [formGroup]="form" (submit)="submit()">
+            <section formGroupName="user" class="form-block">
+
+
+              <div class="row pushtop-60">
+                        <div class="col-md-3"></div>
+                        <div class="col-md-6">
+                          <label class="required-input">E-MAIL АДРЕС</label>
+                          <div class="input-container">
+                            <mat-form-field>
+                              <mat-label>Адрес элекронной почты</mat-label>
+                              <input
+                                type="email"
+                                matInput
+                                formControlName="email"
+                                placeholder="Ex.pat@example.com"
+                              >
+                              <mat-error *ngIf="form.get('user.email').hasError('email')">
+                                Некорректный формат адреса
+                              </mat-error>
+                              <mat-error *ngIf="form.get('user.email').touched && form.get('user.email').hasError('required')">
+                                Данное поле не может быть пустым
+                              </mat-error>
+                            </mat-form-field>
+                            <div class="input-bottom-line"></div>
+                          </div>
+                        </div>
+              </div>
+              <div class="row pushtop-10">
+
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
+                  <label class="required-input">ПАРОЛЬ</label>
+                  <div class="input-container">
+                    <mat-form-field>
+                      <mat-label>Пароль</mat-label>
+                      <input
+                        type="password"
+                        matInput
+                        formControlName="password"
+                        placeholder="Пароль"
+                      >
+                      <mat-error *ngIf="form.get('user.password').touched && form.get('user.password').hasError('required')">
+                        Данное поле не может быть пустым
+                      </mat-error>
+                      <mat-error *ngIf="form.get('user.password').touched && form.get('user.password').hasError('minlength')">
+                        Пароль должен содержать не менее 7 символов
+                      </mat-error>
+                    </mat-form-field>
+                  </div>
+                  <div class="contacts-header">
+                    <button mat-flat-button color="primary" type="submit">Войти</button>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </form>
+    </div>
+  </div>
+

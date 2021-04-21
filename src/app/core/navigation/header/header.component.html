@@ -1,0 +1,61 @@
+
+  <nav class="side-menu-container {{sideMenuStatus}}" id="mobile-menu">
+    <ul class="mx-auto top-level clearfix">
+      <li>
+        <a [routerLink]="'/'">ГЛАВНАЯ<span class="arrow"></span></a>
+      </li>
+      <li>
+        <a [routerLink]="'/profile'">ПРОФИЛЬ</a>
+      </li>
+      <li>
+        <a [routerLink]="'/adverts'">ОБЪЯВЛЕНИЯ</a>
+      </li>
+      <li>
+        <a [routerLink]="'/catteries'">ПИТОМНИКИ</a>
+      </li>
+      <li>
+        <a [routerLink]="'/breeds'">ПОРОДЫ</a>
+      </li>
+    </ul>
+  </nav>
+  <div class="pos-r">
+    <div id="topbar" class="clearfix">
+
+      <div class="top-util pull-right">
+        <div class="side-menu">
+          <a (click)="changeSideMenuStatus()" class="side-menu-button"><span></span><span></span><span></span></a>
+        </div>
+
+      </div>
+
+      <div class="logo pull-left">
+        <a>
+          <h1><img src="https://via.placeholder.com/136x52" alt="logo"></h1>
+        </a>
+      </div>
+      <nav id="desktop-menu">
+        <ul class="mx-auto top-level clearfix">
+          <li>
+            <a [routerLink]="'/'">ГЛАВНАЯ<span class="arrow"></span></a>
+          </li>
+          <li>
+            <a [routerLink]="'/profile'">ПРОФИЛЬ</a>
+          </li>
+          <li>
+            <a [routerLink]="'/adverts'">ОБЪЯВЛЕНИЯ</a>
+          </li>
+          <li>
+            <a [routerLink]="'/catteries'">ПИТОМНИКИ</a>
+          </li>
+          <li>
+            <a [routerLink]="'/breeds'">ПОРОДЫ</a>
+          </li>
+          <li>
+            <a [routerLink]="'/auth'">ВХОД</a>
+          </li>
+        </ul>
+
+      </nav>
+    </div>
+  </div>
+

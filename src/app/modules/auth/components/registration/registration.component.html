@@ -1,0 +1,279 @@
+<div class="header-content fullheight">
+  <div class="page-header text-center">
+    <h2>Регистрация</h2>
+    <br>
+    <div class="centered">
+    <input value="ВОЙТИ" type="submit" class="button-link-1" [routerLink]="'/auth'">
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="widget contact-widget clearfix">
+    <div *ngIf="success" class="alert alert-success alert-dismissible fade show" role="alert">
+      Вы успешно зарегистрированы!
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div *ngIf="error" class="alert alert-danger alert-dismissible fade show" role="alert">
+      <strong>Ошибка регистрации:</strong> {{error}}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    <form [formGroup]="form" (submit)="submit()">
+
+
+      <section formGroupName="user" class="form-block">
+
+
+        <div class="row pushtop-30">
+          <div class="col-md-12">
+          <p class="pretitle text-center">ИНФОРМАЦИЯ ОБ АККАУНТЕ</p>
+          </div>
+        </div>
+        <div class="row pushtop-10">
+          <div class="col-md-6">
+            <label class="required-input">E-MAIL АДРЕС</label>
+            <div class="input-container">
+              <mat-form-field class="example-full-width">
+                <mat-label>Адрес элекронной почты</mat-label>
+                <input
+                  type="email"
+                  matInput
+                  formControlName="email"
+                  placeholder="Ex.pat@example.com"
+                >
+                <mat-error *ngIf="form.get('user.email').hasError('email')">
+                  Некорректный формат адреса
+                </mat-error>
+                <mat-error *ngIf="form.get('user.email').touched && form.get('user.email').hasError('required')">
+                  Данное поле не может быть пустым
+                </mat-error>
+              </mat-form-field>
+              <br>
+              <div class="input-bottom-line"></div>
+            </div>
+          </div>
+
+
+          <div class="col-md-6">
+            <label class="required-input">USERNAME</label>
+            <div class="input-container">
+              <mat-form-field class="example-full-width">
+                <mat-label>Username</mat-label>
+                <input
+                  type="text"
+                  matInput
+                  formControlName="username"
+                  placeholder="Username"
+                >
+                <mat-error *ngIf="form.get('user.email').touched && form.get('user.email').hasError('required')">
+                  Данное поле не может быть пустым
+                </mat-error>
+              </mat-form-field>
+              <div class="input-bottom-line"></div>
+            </div>
+          </div>
+        </div>
+        <div class="row pushtop-10">
+
+
+          <div class="col-md-6">
+            <label class="required-input">ПАРОЛЬ</label>
+            <div class="input-container">
+              <mat-form-field class="example-full-width">
+                <mat-label>Пароль</mat-label>
+                <input
+                  type="password"
+                  matInput
+                  formControlName="password"
+                  placeholder="Пароль"
+                >
+                <mat-error *ngIf="form.get('user.password').touched && form.get('user.password').hasError('required')">
+                  Данное поле не может быть пустым
+                </mat-error>
+                <mat-error *ngIf="form.get('user.password').touched && form.get('user.password').hasError('minlength')">
+                  Пароль должен содержать не менее 7 символов
+                </mat-error>
+              </mat-form-field>
+              <br>
+              <div class="input-bottom-line"></div>
+            </div>
+          </div>
+
+
+          <div class="col-md-6">
+            <label class="required-input">ПОВТОРЕНИЕ ПАРОЛЯ</label>
+            <div class="input-container">
+              <mat-form-field class="example-full-width">
+                <mat-label>Подтверждение пароля</mat-label>
+                <input
+                  type="password"
+                  matInput
+                  formControlName="confirmPassword"
+                  placeholder="подтверждение пароля"
+                >
+                <mat-error
+                  *ngIf="form.get('user.password').touched && form.get('user.confirmPassword').touched && form.hasError('notSame')">
+                  Пароли не совпадают
+                </mat-error>
+              </mat-form-field>
+              <div class="input-bottom-line"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row pushtop-10">
+          <div class="col-md-12">
+            <p class="pretitle text-center">ИНФОРМАЦИЯ ПРОФИЛЯ</p>
+          </div>
+        </div>
+        <div class="row pushtop-10">
+
+          <div class="col-md-6">
+            <label class="required-input">ИМЯ</label>
+            <div class="input-container">
+              <mat-form-field class="example-full-width">
+                <mat-label>Имя</mat-label>
+                <input
+                  type="text"
+                  matInput
+                  formControlName="firstName"
+                  placeholder="Имя"
+                >
+              </mat-form-field>
+              <br>
+              <mat-error *ngIf="form.get('user.firstName').touched && form.get('user.firstName').hasError('required')">
+                Данное поле не может быть пустым
+              </mat-error>
+            </div>
+          </div>
+
+
+          <div class="col-md-6">
+            <label class="required-input">ФАМИЛИЯ</label>
+            <div class="input-container">
+              <mat-form-field class="example-full-width">
+                <mat-label>Фамилия</mat-label>
+                <input
+                  type="text"
+                  matInput
+                  formControlName="lastName"
+                  placeholder="Фамилия"
+                >
+              </mat-form-field>
+              <br>
+              <mat-error *ngIf="form.get('user.lastName').touched && form.get('user.lastName').hasError('required')">
+                Данное поле не может быть пустым
+              </mat-error>
+            </div>
+          </div>
+        </div>
+      <div class="row pushtop-10">
+
+
+          <div class="col-md-6">
+            <label class="required-input">ОТЧЕСТВО</label>
+            <div class="input-container">
+              <mat-form-field class="example-full-width">
+                <mat-label>Отчество</mat-label>
+                <input
+                  type="text"
+                  matInput
+                  formControlName="lastName"
+                  placeholder="Отчество"
+                >
+              </mat-form-field>
+              <br>
+              <mat-error *ngIf="form.get('user.lastName').touched && form.get('user.lastName').hasError('required')">
+                Данное поле не может быть пустым
+              </mat-error>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <label class="required-input">ТЕЛЕФОН</label>
+            <div class="input-container">
+              <mat-form-field class="example-full-width">
+                <mat-label>Телефон</mat-label>
+                <input
+                  type="text"
+                  matInput
+                  formControlName="phone"
+                  placeholder="phone"
+                  mask="0 (000) 000 0000"
+                >
+                <mat-error *ngIf="form.get('user.phone').touched && form.get('user.phone').hasError('required')">
+                  Данное поле не может быть пустым
+                </mat-error>
+                <mat-error
+                  *ngIf="form.get('user.phone').touched && (form.get('user.phone').hasError('minlength') || form.get('user.phone').hasError('maxlength'))">
+                  Некорректный формат номера
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+
+
+          <div class="row pushtop-10">
+
+            <div class="col-md-6">
+              <label>СТРАНА</label>
+              <div class="input-container">
+                <mat-form-field class="example-full-width">
+                  <mat-label>Страна</mat-label>
+                  <input
+                    type="text"
+                    matInput
+                    formControlName="country"
+                    placeholder="Страна"
+                  >
+                </mat-form-field>
+              </div>
+            </div>
+
+
+            <div class="col-md-6">
+              <label>ГОРОД</label>
+              <div class="input-container">
+                <mat-form-field class="example-full-width">
+                  <mat-label>Город</mat-label>
+                  <input
+                    type="text"
+                    matInput
+                    formControlName="city"
+                    placeholder="Город"
+                  >
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+      <div class="row pushtop-10">
+
+
+            <div class="col-md-6">
+              <label class="required-input">ДАТА РОЖДЕНИЯ</label>
+              <div class="input-container">
+                <mat-form-field class="example-full-width">
+                  <mat-label>Дата</mat-label>
+                  <input matInput [matDatepicker]="picker" formControlName="birthDate">
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+
+        <div class="centered">
+          <button mat-flat-button color="primary" type="submit" class="pull-right">Регистрация</button>
+        </div>
+
+      </section>
+    </form>
+  </div>
+</div>
+
