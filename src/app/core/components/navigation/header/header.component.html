@@ -39,7 +39,7 @@
             <a [routerLink]="'/'">ГЛАВНАЯ<span class="arrow"></span></a>
           </li>
           <li>
-            <a [routerLink]="'/profile'">ПРОФИЛЬ</a>
+            <a *ngIf="authService.isAuthenticated()" [routerLink]="'/profile'">ПРОФИЛЬ</a>
           </li>
           <li>
             <a [routerLink]="'/adverts'">ОБЪЯВЛЕНИЯ</a>
@@ -51,7 +51,8 @@
             <a [routerLink]="'/breeds'">ПОРОДЫ</a>
           </li>
           <li>
-            <a [routerLink]="'/auth'">ВХОД</a>
+            <a *ngIf="authService.isAuthenticated()" [routerLink]="'/auth/log-out'">ВЫХОД</a>
+            <a *ngIf="!authService.isAuthenticated()" class="text-with-icon" [routerLink]="'/auth'">ВХОД</a>
           </li>
         </ul>
 
