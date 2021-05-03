@@ -5,23 +5,20 @@ import { Observable } from 'rxjs';
 
 
 @Injectable()
-export class FbInterceptor implements HttpInterceptor {
+export class DbInterceptor implements HttpInterceptor {
 
   constructor(
     private readonly authService: AuthService
   ) {}
 
-  intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    if (!this.authService.token) {
-      return next.handle(request);
-    }
+  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    const clon: HttpRequest<unknown> = request.clone({
-      setParams: {
-        auth: this.authService.token
+    request = request.clone({
+      setHeaders: {
+        Authorization: `Bearer ${this.authService.token}`
       }
     });
 
-    return next.handle(clon);
+    return next.handle(request);
   }
 }

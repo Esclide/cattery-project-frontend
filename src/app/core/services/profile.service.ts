@@ -1,38 +1,19 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import {HttpClient} from "@angular/common/http";
-import {Advertisement} from "../interfaces/advertisement";
 import {Observable} from "rxjs";
-import {map} from "rxjs/operators";
+import {User} from "../interfaces/user";
 
 @Injectable({
   providedIn: 'root'
 })
-export class AdvertisementService {
+export class ProfileService {
 
   constructor(
     private readonly httpClient: HttpClient
   ) { }
 
-  find(): Observable<Advertisement[]> {
-    return this.httpClient
-      .get(`${environment.baseUrl}/adverts`)
-      .pipe(
-        map(
-          (res: { [id: number]: Advertisement }) => Object
-            .keys(res)
-            .map((id: string) => ({
-              id, ...res[id]
-            }))
-        )
-      );
-  }
-
-  findOne(id: number): Observable<Advertisement> {
-    return this.httpClient.get<Advertisement>(`${environment.baseUrl}/adverts/${id}`);
-  }
-
-  update(advertisement: Advertisement): Observable<Advertisement> {
-    return this.httpClient.put<Advertisement>(`${environment.baseUrl}/adverts/${advertisement.id}`, advertisement);
+  getCurrentUser(): Observable<User> {
+    return this.httpClient.get<User>(`${environment.baseUrl}/profile`);
   }
 }

@@ -1,0 +1,86 @@
+<div class="header-content fullheight">
+  <div class="page-header text-center">
+    <h2 *ngIf="advertisement">{{advertisement.title}}</h2>
+    <div class="centered" *ngIf="authService.isAuthenticated">
+    <input value="ИЗМЕНИТЬ" type="submit"  class="button-link-1 mt-3" [routerLink]="'edit'">
+    </div>
+  </div>
+</div>
+
+<div *ngIf="advertisement" class="container drag-up">
+  <div class="blog-listing">
+    <div class="blog-post portfolio-single">
+      <div class="blog-post-slick">
+        <img class="img-fluid" alt="Blog post" src="https://via.placeholder.com/1170x450">
+      </div>
+      <div class="padded-blog-content clearfix">
+        <div class="post-meta">
+          <span class="post-date">{{advertisement.creationDate}}</span>
+          |
+          <span class="post-author"><a>{{advertisement.creator.username}}</a></span>
+          |
+          <span class="comment-count">Рейтинг заводчика: 3,4</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-9">
+          <div class="padded-blog-content">
+            <p>
+              {{advertisement.description}}
+            </p>
+          </div>
+          <div class="blog-comments">
+            <h3>Отзывы о заводчике</h3>
+            <div class="comment clearfix">
+              <img src="https://via.placeholder.com/60x60" alt="Avatar" class="pull-left">
+              <div class="inner-comment">
+                <a href="#" class="commenter">Jack Porter</a>
+                <span class="postedon">11/06/2018 - 12:12 AM</span>
+                <p>
+                  Покупал несколько раз у данного заводчика. Все честно - чаем напоил. спать уложил. Правда, я забыл, зачем приходил
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="related-projects pushtop-100">
+            <h3>Информация о кошках</h3>
+            <div class="row small-gutters pushtop-30">
+              <div class="col-md-6 related-projects">
+                <a href="#" class="portfolio-item-alt">
+                  <img src="https://via.placeholder.com/430x280" alt="widget-image" class="img-fluid">
+                  <div class="inner-wrapper">
+                    <h6>Кошка 1</h6>
+                    <p>Порода 1</p>
+                  </div>
+                </a>
+              </div>
+              <div class="col-md-6">
+                <a href="#" class="portfolio-item-alt">
+                  <img src="https://via.placeholder.com/430x280" alt="widget-image" class="img-fluid">
+                  <div class="inner-wrapper">
+                    <h6>Кошка 2</h6>
+                    <p>Порода 2</p>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <aside class="portfolio-single-aside pushtop-30">
+            <h4>Дополнительная информация</h4>
+            <ul class="details">
+              <li><strong>Тип обявления: </strong>{{advertisement.type}}</li>
+              <li><strong>Породы: </strong>{{advertisement.breedNames}}</li>
+              <li><strong>Локация: </strong>{{advertisement.country}}, {{advertisement.city}}</li>
+<!--              <li><strong>Питомник: </strong>{{advertisement.}}</li>-->
+              <li><strong>Цена: </strong>{{advertisement.price}}</li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+

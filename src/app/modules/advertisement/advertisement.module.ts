@@ -1,25 +1,27 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {MaterialModule} from "../../shared/modules/material/material.module";
 import {RouterModule} from "@angular/router";
 import {HttpClientModule} from "@angular/common/http";
-import {ReactiveFormsModule} from "@angular/forms";
 import {AdvertisementRoutingModule} from "./advertisement-routing.module";
 import { AdvertisementsComponent } from './components/advertisements/advertisements.component';
+import {SharedModule} from "../../shared/shared.module";
+import {AdvertisementComponent} from "./components/advertisement/advertisement.component";
+import { EditAdvertisementComponent } from './components/edit-advertisement/edit-advertisement.component';
+import { FormAdvertisementComponent } from './components/form-advertisement/form-advertisement.component';
+import {CreateAdvertisementComponent} from "./components/create-advertisement/create-advertisement.component";
 
 
 
 @NgModule({
   declarations: [
-    AdvertisementsComponent
+    AdvertisementsComponent, AdvertisementComponent, EditAdvertisementComponent, FormAdvertisementComponent, CreateAdvertisementComponent
   ],
   imports: [
     CommonModule,
-    MaterialModule,
     RouterModule,
     HttpClientModule,
-    ReactiveFormsModule,
-    AdvertisementRoutingModule
+    AdvertisementRoutingModule,
+    SharedModule,
   ]
 })
 export class AdvertisementModule { }

@@ -11,6 +11,7 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatIconModule} from "@angular/material/icon";
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [],
@@ -28,6 +29,7 @@ import {MatIconModule} from "@angular/material/icon";
     MatSidenavModule,
     MatToolbarModule,
     MatIconModule,
+    MatSelectModule
   ],
   exports: [
     CommonModule,
@@ -43,6 +45,7 @@ import {MatIconModule} from "@angular/material/icon";
     MatSidenavModule,
     MatToolbarModule,
     MatIconModule,
+    MatSelectModule
   ]
 })
 export class MaterialModule { }

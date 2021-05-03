@@ -1,3 +1,5 @@
+import {Cat} from "./cat";
+
 export interface User {
   id?: number;
   email?: string;
@@ -13,4 +15,5 @@ export interface User {
   city?: string;
   image?: string;
   isDeleted?: boolean;
+  ownedCats: Cat[];
 }

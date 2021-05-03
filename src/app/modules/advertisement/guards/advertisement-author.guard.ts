@@ -1,28 +1,67 @@
-import { AuthService } from '../services/auth.service';
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
+import {
+  CanActivate,
+  ActivatedRouteSnapshot,
+  RouterStateSnapshot,
+  UrlTree,
+} from '@angular/router';
 import { Observable } from 'rxjs';
+import {tap} from "rxjs/operators";
+import {Advertisement} from "../../../core/interfaces/advertisement";
+import {AdvertisementService} from "../../../core/services/advertisement.service";
+import {ProfileService} from "../../../core/services/profile.service";
+import {User} from "../../../core/interfaces/user";
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard implements CanActivate {
+export class AdvertisementAuthorGuard implements CanActivate {
+
+  currentUser: User;
+  advertisement: Advertisement;
 
   constructor(
-    private readonly router: Router,
-    private readonly authService: AuthService
-  ) {}
+    private readonly advertsService: AdvertisementService,
+    private readonly profileService: ProfileService
+  ) {
+  }
+
 
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if (this.authService.isAuthenticated()) {
-      return true;
-    }
+    return new Observable<boolean>(obs => {
+      this.profileService.getCurrentUser().pipe(
+        tap((user: User) => {
+          console.log(user);
+          return this.currentUser = user
+        })
+      ).subscribe();
+      return this.advertsService.findOne(parseInt(route.params.id)).subscribe(advertisement => {
+        this.advertisement = advertisement
+        console.log(advertisement)
+        this.profileService.getCurrentUser().subscribe(user => {
+          console.log(user)
+          console.log(advertisement)
+          if (advertisement.creator.username === user.username) {
+            obs.next(true)
+          }
+          else obs.next(false)
+        });
+      })
+    });
 
-    this.authService.logout();
 
-    this.router.navigateByUrl('/auth/sign-in');
+    // this.advertsService.findOne(parseInt(route.params.id)).subscribe(advertisement => this.advertisement = advertisement)
+    //
+    // this.profileService.getCurrentUser().pipe(
+    //     tap((user: User) => {console.log(user); return this.currentUser = user})
+    //   ).subscribe();
+    // console.log('adv' + this.advertisement)
+    // console.log('cu' +this.currentUser)
+    //
+    // return this.advertisement!.creator.username === this.currentUser!.username;
+
   }
 }

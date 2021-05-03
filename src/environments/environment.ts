@@ -4,9 +4,8 @@
 
 export const environment = {
   production: false,
+  baseUrl: "http://localhost:3011",
   authServiceUrl: "http://localhost:3011/auth",
-  advertsServiceUrl: "http://localhost:3011/adverts"
-
 };
 
 /*

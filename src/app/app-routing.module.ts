@@ -10,6 +10,7 @@ const routes: Routes = [
   { path: 'auth', loadChildren: () => import('./modules/auth/auth.module').then(m => m.AuthModule) },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
   { path: 'adverts', loadChildren: () => import('./modules/advertisement/advertisement.module').then(m => m.AdvertisementModule) },
+  { path: 'cats', loadChildren: () => import('./modules/cat/cat.module').then(m => m.CatModule) },
   { path: '**', component: NotFoundComponent },
 ];
 

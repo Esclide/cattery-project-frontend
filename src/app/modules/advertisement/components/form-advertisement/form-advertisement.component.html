@@ -1,0 +1,133 @@
+<form [formGroup]="form" (submit)="submit()">
+  <div class="header-content fullheight">
+  <div class="page-header text-center">
+    <h2>Изменить объявление</h2>
+    <div class="centered">
+    <button mat-flat-button color="primary" type="submit" class="pull-right">Подтвердить</button>
+    </div>
+  </div>
+</div>
+
+<div class="container drag-up">
+  <div class="blog-listing">
+    <div class="blog-post portfolio-single">
+      <div class="blog-post-slick">
+        <img class="img-fluid" alt="Blog post" src="https://via.placeholder.com/1170x450">
+      </div>
+      <div *ngIf="advertisement" class="padded-blog-content clearfix">
+        <div class="post-meta">
+          <span class="post-date">{{advertisement.creationDate}}</span>
+          |
+          <span class="post-author"><a>{{advertisement.creatorUsername}}</a></span>
+          |
+          <span class="comment-count">Рейтинг заводчика: 3,4</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-9">
+          <div class="padded-blog-content">
+            <h5>
+              <mat-form-field class="example-full-width">
+                <mat-label>Название</mat-label>
+                <input
+                  type="text"
+                  matInput
+                  formControlName="title"
+                  placeholder="{{advertisement? advertisement.title : 'Название объявления' }}"
+                >
+              </mat-form-field>
+            </h5>
+
+            <p>
+              <mat-form-field class="example-full-width">
+                <mat-label>Описание</mat-label>
+                <textarea
+                  type="text"
+                  matInput
+                  formControlName="description"
+                  placeholder="{{advertisement? advertisement.description : 'Описание объявления' }}"
+                ></textarea>
+              </mat-form-field>
+            </p>
+          </div>
+          <div class="related-projects pushtop-100">
+            <h3>Информация о кошках</h3>
+            <div class="row small-gutters pushtop-30">
+              <div class="col-md-6 related-projects">
+                <a href="#" class="portfolio-item-alt">
+                  <img src="https://via.placeholder.com/430x280" alt="widget-image" class="img-fluid">
+                  <div class="inner-wrapper">
+                    <h6>Кошка 1</h6>
+                    <p>Порода 1</p>
+                  </div>
+                </a>
+              </div>
+              <div class="col-md-6">
+                <a href="#" class="portfolio-item-alt">
+                  <img src="https://via.placeholder.com/430x280" alt="widget-image" class="img-fluid">
+                  <div class="inner-wrapper">
+                    <h6>Кошка 2</h6>
+                    <p>Порода 2</p>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <aside class="portfolio-single-aside pushtop-30">
+            <h4>Дополнительная информация</h4>
+            <ul class="details">
+              <li><strong>Тип обявления: </strong>
+                <mat-form-field class="example-full-width mt-3">
+                  <mat-label>Тип объявления</mat-label>
+                  <mat-select [value]='advertisement ? advertisement.type : AdvertisementTypes[0].value '>
+                    <mat-option *ngFor="let type of AdvertisementTypes" [value]="type.value">
+                      {{type.title}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </li>
+              <li><strong>Породы: </strong>{{advertisement ? advertisement.breedNames : 'Выберите породы'}}</li>
+              <li><strong>Локация: </strong><mat-form-field class="example-full-width mt-3">
+                <mat-label>Страна</mat-label>
+                <input
+                  type="text"
+                  matInput
+                  formControlName="country"
+                  placeholder="{{advertisement ? advertisement.country : 'Страна'}}"
+                >
+              </mat-form-field>
+                <br>
+                <mat-form-field class="example-full-width">
+                <mat-label>Город</mat-label>
+                <input
+                  type="text"
+                  matInput
+                  formControlName="city"
+                  placeholder="{{advertisement ? advertisement.city : 'Город'}}"
+                >
+              </mat-form-field></li>
+<!--              <li><strong>Питомник: </strong>{{advertisement.}}</li>-->
+              <li><strong>Цена: </strong>
+                <mat-form-field class="example-full-width mt-3">
+                <mat-label>Цена</mat-label>
+                <input
+                  type="text"
+                  matInput
+                  formControlName="price"
+                  placeholder="{{advertisement ? advertisement.price : 'Укажите цену'}}"
+                >
+              </mat-form-field>
+              </li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</form>
+

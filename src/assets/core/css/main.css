@@ -268,7 +268,7 @@ header{
 }
 
 .page-header{
-	background: url('https://sun9-67.userapi.com/impg/beCwl-65IFS6FIrUnNZfAvVB2u67HJ6EOIw0kQ/QTZD5DFUk5g.jpg?size=1920x445&quality=96&sign=94df0e0f90efa6dc4e04992d2ddc4d51&type=album');
+	background-image: url('../../images/home/background.png');
 	background-size: cover;
 	padding: 180px 0 150px;
 }
@@ -1055,7 +1055,7 @@ nav > .navbar-collapse > ul > li.search{
 }
 
 .widget-4 .widget4-wrapper{
-	background: url('https://via.placeholder.com/1170x780');
+	background: url('../../images/home/home-small-background.png');
 	background-size: cover;
 	border-radius: 10px;
 	padding: 75px;
@@ -2144,8 +2144,7 @@ nav > .navbar-collapse > ul > li.search{
 }
 
 .widget-23{
-	background-color: #f4fcff;
-	padding-top: 90px;
+	padding-top: 20px;
 	padding-bottom: 100px;
 }
 
@@ -3257,7 +3256,7 @@ footer .tag:hover{
 
 	#topbar{
 		position: static;
-	    background-image: url('https://via.placeholder.com/1170x780');
+	    background-image: url('../../images/home/home-small-background.png');
     	background-size: 100% 100%;
     	border-bottom: 1px solid #aaa;
 	}

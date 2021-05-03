@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../../../environments/environment';
 import {HttpClient} from "@angular/common/http";
 import { tap } from 'rxjs/operators';
+import {LocalStorageKeys} from "../enums/ls-keys";
+import {AuthResponsePayload} from "../interfaces/AuthResponsePayload";
+import {Router} from "@angular/router";
 
 interface SignUpFields {
   "email": string,
@@ -22,7 +25,12 @@ interface SignUpFields {
 })
 export class AuthService {
 
+  get token(): string {
+    return localStorage.getItem(LocalStorageKeys.ACCESS_TOKEN);
+  }
+
   constructor(
+    private readonly router: Router,
     private readonly httpClient: HttpClient
   ) { }
 
@@ -31,14 +39,16 @@ export class AuthService {
       `${environment.authServiceUrl}/login`,
       { email, password },
     ).pipe(
-      tap((res: { access_token: string}) => {
-        const accessToken = res.access_token;
+      tap((res: AuthResponsePayload) => {
+        const { accessToken, expireIn } = res
 
-        if (!accessToken) {
+        if (!accessToken || !expireIn) {
           return null;
         }
+        const dateExp: Date = new Date (new Date().getTime() + +expireIn);
 
-        localStorage.setItem('fb-token', accessToken);
+        localStorage.setItem(LocalStorageKeys.DATE_EXP, dateExp.toString());
+        localStorage.setItem(LocalStorageKeys.ACCESS_TOKEN, accessToken);
       })
     );
   }
@@ -51,7 +61,18 @@ export class AuthService {
   }
 
   isAuthenticated(): boolean {
-    return !!localStorage.getItem('fb-token');
+    if (!localStorage.getItem(LocalStorageKeys.DATE_EXP) || !localStorage.getItem(LocalStorageKeys.ACCESS_TOKEN)) {
+      return false
+    }
+
+    const dateExp = new Date(localStorage.getItem(LocalStorageKeys.DATE_EXP));
+
+    if (new Date() > dateExp) {
+      this.logout();
+      return false;
+    }
+
+    return !!localStorage.getItem(LocalStorageKeys.ACCESS_TOKEN);
   }
 
   logout(): void {

@@ -1,1 +1,81 @@
-<p>profile works!</p>
+<div class="header-content fullheight">
+  <div class="page-header text-center">
+    <h2 *ngIf="user">{{user.lastName}} {{user.firstName}} {{user.middleName}}</h2>
+    <h2 *ngIf="user">{{user.username}}</h2>
+    <br>
+  </div>
+</div>
+
+<div *ngIf="user" class="container drag-up">
+  <div class="row">
+    <div class="col-lg-9">
+      <div class="blog-listing">
+        <div class="blog-post portfolio-single">
+          <div class="blog-post-slick">
+            <img class="img-fluid" alt="Blog post" src="https://via.placeholder.com/500x600">
+          </div>
+          <div class="aside-widget popular-categories mt-5">
+            <h4>ИНФОРМАЦИЯ О ПОЛЬЗОВАТЕЛЕ</h4>
+            <ul>
+              <li>Дата рождения<span class="pull-right item-count">{{user.birthDate | date:'dd/MM/yyyy'}}</span></li>
+              <li>Дата регистрации<span class="pull-right item-count">{{user.registrationDate | date:'dd/MM/yyyy HH:mm:ss'}}</span></li>
+              <li>Телефон<span class="pull-right item-count">{{user.phone}}</span></li>
+              <li>Локация<span class="pull-right item-count">{{user.country}}, {{user.city}}</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="related-projects pushtop-100">
+        <h3>КОШКИ ПОЛЬЗОВАТЕЛЯ</h3>
+        <div class="row small-gutters pushtop-30">
+        <ng-container *ngFor="let cat of userCats">
+
+          <div class="col-md-6">
+            <a href="#" class="portfolio-item-alt">
+              <img src="https://via.placeholder.com/430x280" alt="widget-image" class="img-fluid">
+              <div class="inner-wrapper">
+                <h6>{{cat.name}}</h6>
+                <p>{{cat.breed.name}}</p>
+              </div>
+            </a>
+          </div>
+
+        </ng-container>
+        </div>
+        <button mat-flat-button color="primary" [routerLink]="'/cats/create'">Добавить</button>
+
+      </div>
+<!--      <ul class="blog-pagination pushtop-50">-->
+<!--        <li><a href="#">1</a></li>-->
+<!--        <li><a href="#">2</a></li>-->
+<!--        <li><a href="#">3</a></li>-->
+<!--        <li><a href="#">4</a></li>-->
+<!--        <li><a href="#">5</a></li>-->
+<!--        <li><a href="#">6</a></li>-->
+<!--      </ul>-->
+    </div>
+    <div class="col-lg-3">
+      <aside class="blog-sidebar">
+        <div class="aside-widget recent-posts">
+          <h4>ПИТОМНИКИ</h4>
+          <div class="recent-post clearfix">
+            <img src="https://via.placeholder.com/70x70" alt="Recent post" class="pull-left">
+            <a href="#">Питомник сомалийских кошек "Звезда Востока"</a>
+            <span class="pull-right">Руководитель</span>
+          </div>
+          <div class="recent-post clearfix">
+            <img src="https://via.placeholder.com/70x70" alt="Recent post" class="pull-left">
+            <a href="#">Питомник персидских кошек "Пушистая нежность"</a>
+            <span class="pull-right">Участник</span>
+          </div>
+          <div class="recent-post clearfix">
+            <img src="https://via.placeholder.com/70x70" alt="Recent post" class="pull-left">
+            <a href="#">Incendcnce Itoile</a>
+            <span class="pull-right">Участник</span>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+</div>

@@ -1,29 +1,42 @@
-  <div class="jumbotron p-4 p-md-5 text-white rounded bg-dark">
-    <div class="col-md-6 px-0">
-      <h1 class="display-4">Объявления</h1>
-      <p class="lead my-3">Категория объявления:</p>
-      <button type="button" class="btn btn-primary mr-2">Продажа</button>
-      <button type="button" class="btn btn-primary">Вязка</button>
+<div class="header-content fullheight">
+  <div class="page-header text-center">
+    <h2>Объявления о продаже</h2>
+    <p><a [routerLink]="'/adverts'" class="text-white">Просмотреть объявления о вязке</a></p>
+    <div class="centered">
+      <input value="Создать объявление" type="submit"  class="button-link-1" [routerLink]="'/adverts/create'">
     </div>
   </div>
+</div>
 
-  <div class="row mb-2">
-    <ng-container *ngFor="let advertisement of advertisements">
-    <div class="col-lg-6">
-      <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-        <div class="col p-4 d-flex flex-column position-static">
-          <strong class="d-inline-block mb-2 text-primary">{{ advertisement.type }}</strong>
-          <h3 class="mb-0">{{ advertisement.title }}</h3>
-          <div class="mb-1 text-muted">{{ advertisement.creationDate }}</div>
-          <div class ="text-to-expand">
-            <p class="card-text mb-auto">{{ advertisement.description }}</p>
+<div class="widget-23">
+
+  <div class="container">
+    <div class="team-widget-tabs clearfix text-center">
+      <ul class="clearfix pushtop-30">
+        <li><a data-filter=".default" class="active link-hover">ВСЕ</a></li>
+        <li><a data-filter=".team-designer" class="link-hover">ПОРОДА</a></li>
+        <li><a data-filter=".team-developer"  class="link-hover">ЛОКАЦИЯ</a></li>
+        <li><a data-filter=".team-office"  class="link-hover">ПИТОМНИК</a></li>
+        <li><a data-filter=".team-marketing"  class="link-hover">ЦЕНА</a></li>
+      </ul>
+    </div>
+    <div id="team-widget-tab-content" class="row">
+
+      <ng-container *ngFor="let adverts of advertisements">
+      <div class="col-lg-3 col-md-6 default team-designer">
+        <div class="team-member">
+          <strong class="d-inline-block mb-2 text-info">{{ adverts.type }}</strong>
+          <img src="https://via.placeholder.com/270x270" class="img-fluid" alt="avatar">
+          <a [routerLink]="['/adverts', adverts.id]" class="link-hover">{{adverts.title}}</a>
+          <div class="mb-1 text-muted">{{ adverts.creationDate }}</div>
+          <div class="line-clamp">
+          <p>
+            {{adverts.description}}
+          </p>
           </div>
-          <a href="#" class="stretched-link">Подробнее</a>
-        </div>
-        <div class="col-auto d-block">
-          <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em"></text></svg>
         </div>
       </div>
+      </ng-container>
     </div>
-    </ng-container>
   </div>
+</div>

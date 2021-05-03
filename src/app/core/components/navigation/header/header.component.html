@@ -5,7 +5,7 @@
         <a [routerLink]="'/'">ГЛАВНАЯ<span class="arrow"></span></a>
       </li>
       <li>
-        <a [routerLink]="'/profile'">ПРОФИЛЬ</a>
+        <a *ngIf="authService.isAuthenticated()" [routerLink]="'/profile'">ПРОФИЛЬ</a>
       </li>
       <li>
         <a [routerLink]="'/adverts'">ОБЪЯВЛЕНИЯ</a>
@@ -30,7 +30,7 @@
 
       <div class="logo pull-left">
         <a>
-          <h1><img src="https://via.placeholder.com/136x52" alt="logo"></h1>
+          <h1><img src="/assets/images/home/logo.png" alt="logo"></h1>
         </a>
       </div>
       <nav id="desktop-menu">
