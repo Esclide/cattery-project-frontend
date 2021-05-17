@@ -1,1 +1,2 @@
 # cattery-project-frontend
+MASTER
