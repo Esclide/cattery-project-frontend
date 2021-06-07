@@ -5,20 +5,7 @@ import { tap } from 'rxjs/operators';
 import {LocalStorageKeys} from "../enums/ls-keys";
 import {AuthResponsePayload} from "../interfaces/AuthResponsePayload";
 import {Router} from "@angular/router";
-
-interface SignUpFields {
-  "email": string,
-  "password": string,
-  "username": string,
-  "firstName": string,
-  "middleName": string,
-  "lastName": string,
-  "birthDate": string,
-  "phone": string,
-  "country": string,
-  "city": string,
-  "image"?: string,
-}
+import {SignUpFields} from "../../../core/interfaces/sign-up";
 
 @Injectable({
   providedIn: 'root'
@@ -41,6 +28,9 @@ export class AuthService {
     ).pipe(
       tap((res: AuthResponsePayload) => {
         const { accessToken, expireIn } = res
+
+        console.log(email)
+        console.log(password)
 
         if (!accessToken || !expireIn) {
           return null;

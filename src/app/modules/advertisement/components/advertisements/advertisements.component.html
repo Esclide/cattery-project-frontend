@@ -1,7 +1,6 @@
 <div class="header-content fullheight">
   <div class="page-header text-center">
-    <h2>Объявления о продаже</h2>
-    <p><a [routerLink]="'/adverts'" class="text-white">Просмотреть объявления о вязке</a></p>
+    <h2>Объявления о продаже и вязке</h2>
     <div class="centered">
       <input value="Создать объявление" type="submit"  class="button-link-1" [routerLink]="'/adverts/create'">
     </div>
@@ -14,6 +13,7 @@
     <div class="team-widget-tabs clearfix text-center">
       <ul class="clearfix pushtop-30">
         <li><a data-filter=".default" class="active link-hover">ВСЕ</a></li>
+        <li><a data-filter=".team-designer" class="link-hover">ТИП</a></li>
         <li><a data-filter=".team-designer" class="link-hover">ПОРОДА</a></li>
         <li><a data-filter=".team-developer"  class="link-hover">ЛОКАЦИЯ</a></li>
         <li><a data-filter=".team-office"  class="link-hover">ПИТОМНИК</a></li>
@@ -25,10 +25,16 @@
       <ng-container *ngFor="let adverts of advertisements">
       <div class="col-lg-3 col-md-6 default team-designer">
         <div class="team-member">
-          <strong class="d-inline-block mb-2 text-info">{{ adverts.type }}</strong>
-          <img src="https://via.placeholder.com/270x270" class="img-fluid" alt="avatar">
+          <strong class="d-inline-block mb-2 text-info">{{ adverts.type === 'sale'? 'Продажа' : 'Вязка' }}</strong>
+          <img *ngIf="adverts.id === 1" src="assets/images/cat1.png" class="img-fluid" alt="avatar">
+          <img *ngIf="adverts.id === 2" src="assets/images/cat2.png" class="img-fluid" alt="avatar">
+
+          <img *ngIf="adverts.type === 'sale' && adverts.id !== 1 && adverts.id !== 2" src="assets/images/sale.png" class="img-fluid" alt="avatar">
+          <img *ngIf="adverts.type === 'knitting' && adverts.id !== 1 && adverts.id !== 2" src="assets/images/knitting.png" class="img-fluid" alt="avatar">
+
           <a [routerLink]="['/adverts', adverts.id]" class="link-hover">{{adverts.title}}</a>
-          <div class="mb-1 text-muted">{{ adverts.creationDate }}</div>
+
+          <div class="mb-1 text-muted">{{ adverts.creationDate | date:'dd/MM/yyyy'}}</div>
           <div class="line-clamp">
           <p>
             {{adverts.description}}

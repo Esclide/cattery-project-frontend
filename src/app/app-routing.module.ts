@@ -11,6 +11,8 @@ const routes: Routes = [
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
   { path: 'adverts', loadChildren: () => import('./modules/advertisement/advertisement.module').then(m => m.AdvertisementModule) },
   { path: 'cats', loadChildren: () => import('./modules/cat/cat.module').then(m => m.CatModule) },
+  { path: 'catteries', loadChildren: () => import('./modules/cattery/cattery.module').then(m => m.CatteryModule) },
+
   { path: '**', component: NotFoundComponent },
 ];
 

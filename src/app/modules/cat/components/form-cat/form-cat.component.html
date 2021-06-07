@@ -131,8 +131,6 @@
             </div>
           </div>
 
-
-
           <div class="col-md-6">
             <label class="required-input">ДАТА РОЖДЕНИЯ</label>
             <div class="input-container">
@@ -152,15 +150,25 @@
             <label class="required-input">ПОЛ ЖИВОТНОГО</label>
             <div class="input-container">
               <mat-form-field appearance="fill" class="example-full-width" >
-                <select matNativeControl required value="male" formControlName="gender">
-                  <option value="male">Мужской</option>
-                  <option value="female">Женский</option>
-                </select>
+
+                <mat-select required value="male" formControlName="gender">
+                  <mat-option value="male">Мужской</mat-option>
+                  <mat-option value="female">Женский</mat-option>
+                </mat-select>
               </mat-form-field>
               <div class="input-bottom-line"></div>
             </div>
           </div>
+
+          <div class="col-md-6">
+            <label class="required-input">Выбрать изображения</label>
+            <div class="input-container">
+              <input class="ng-hide" id="input-file-id" multiple type="file" />
+              <div class="input-bottom-line"></div>
+            </div>
+          </div>
         </div>
+
 
         <button mat-raised-button color="basic" (click)="deleteCat(i)">Удалить котика</button>
           <br> <br>

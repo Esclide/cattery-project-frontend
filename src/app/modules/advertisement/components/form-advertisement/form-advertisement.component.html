@@ -52,6 +52,16 @@
           </div>
           <div class="related-projects pushtop-100">
             <h3>Информация о кошках</h3>
+            <mat-form-field appearance="fill">
+              <mat-label>Toppings</mat-label>
+              <mat-select formControlName="cats" multiple>
+                <mat-option *ngFor="let cat of userCats" [value]="cat.id">{{cat.name}}, {{cat.breed}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <h3>d{{advertisement}}</h3>
+
+            <h3>d{{userCats}}</h3>
+
             <div class="row small-gutters pushtop-30">
               <div class="col-md-6 related-projects">
                 <a href="#" class="portfolio-item-alt">
@@ -81,7 +91,7 @@
               <li><strong>Тип обявления: </strong>
                 <mat-form-field class="example-full-width mt-3">
                   <mat-label>Тип объявления</mat-label>
-                  <mat-select [value]='advertisement ? advertisement.type : AdvertisementTypes[0].value '>
+                  <mat-select formControlName="type" [value]='advertisement ? advertisement.type : AdvertisementTypes[0].value '>
                     <mat-option *ngFor="let type of AdvertisementTypes" [value]="type.value">
                       {{type.title}}
                     </mat-option>

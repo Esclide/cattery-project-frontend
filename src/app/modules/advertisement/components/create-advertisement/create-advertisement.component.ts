@@ -3,6 +3,9 @@ import {Advertisement} from "../../../../core/interfaces/advertisement";
 import {AdvertisementService} from "../../../../core/services/advertisement.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {switchMap, tap} from "rxjs/operators";
+import {Cat} from "../../../../core/interfaces/cat";
+import {User} from "../../../../core/interfaces/user";
+import {ProfileService} from "../../../../core/services/profile.service";
 
 @Component({
   selector: 'app-create-advertisement',
@@ -12,14 +15,24 @@ import {switchMap, tap} from "rxjs/operators";
 export class CreateAdvertisementComponent implements OnInit {
 
   advertisement: Advertisement;
+  userCats: Cat[] = [];
 
   constructor(
     private readonly router: Router,
     private readonly route: ActivatedRoute,
-    private readonly advertsService: AdvertisementService
-  ) { }
+    private readonly advertsService: AdvertisementService,
+  private readonly profileService: ProfileService
+) { }
 
   ngOnInit(): void {
+    this.profileService.getCurrentUser().pipe(
+      tap((user: User) => {
+        console.log(user.ownedCats)
+        for (const cat of user.ownedCats) {
+          this.userCats.push(cat)
+        }
+      })
+    ).subscribe()
   }
 
   submit(advertisement: Advertisement): void {

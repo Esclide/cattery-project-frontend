@@ -7,18 +7,20 @@ import {RouterModule} from "@angular/router";
 import {AuthRoutingModule} from "./auth-routing.module";
 import {HttpClientModule} from "@angular/common/http";
 import {ReactiveFormsModule} from "@angular/forms";
+import {NgxMaskModule} from "ngx-mask";
 
 
 
 @NgModule({
   declarations: [AuthComponent, RegistrationComponent],
-  imports: [
-    CommonModule,
-    MaterialModule,
-    RouterModule,
-    AuthRoutingModule,
-    HttpClientModule,
-    ReactiveFormsModule,
-  ]
+    imports: [
+        CommonModule,
+        MaterialModule,
+        RouterModule,
+        AuthRoutingModule,
+        HttpClientModule,
+        ReactiveFormsModule,
+        NgxMaskModule,
+    ]
 })
 export class AuthModule { }

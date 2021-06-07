@@ -1,8 +1,9 @@
 import {Advertisement} from "../../../../core/interfaces/advertisement";
 import {AdvertisementType} from "../../../../core/data/advertisement-types";
 
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {Cat} from "../../../../core/interfaces/cat";
 
 @Component({
   selector: 'app-form-advertisement',
@@ -11,6 +12,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 })
 export class FormAdvertisementComponent {
 
+  userCats: Cat[] = [];
   advertisement: Advertisement;
 
   @Input('advertisement') set setAdvertisement(advertisement: Advertisement) {
@@ -20,15 +22,27 @@ export class FormAdvertisementComponent {
     this.advertisement = advertisement;
     this.form.patchValue(advertisement);
   };
+
+  @Input('userCats') set setUserCats(userCats: Cat[]) {
+    if (!userCats) {
+      console.log('AAAAAAAAAAAAAAAA')
+      return;
+    }
+    console.log(userCats)
+    this.userCats = userCats;
+    this.form.patchValue(userCats);
+  };
   @Output() onSubmit: EventEmitter<Advertisement> = new EventEmitter<Advertisement>();
 
 
   form: FormGroup = new FormGroup({
     title: new FormControl('', Validators.required),
     description: new FormControl(''),
+    type: new FormControl('', Validators.required),
     country: new FormControl('', Validators.required),
     city: new FormControl('', Validators.required),
     price: new FormControl('', Validators.required),
+    cats: new FormControl('', Validators.required),
   });
   AdvertisementTypes = AdvertisementType;
 

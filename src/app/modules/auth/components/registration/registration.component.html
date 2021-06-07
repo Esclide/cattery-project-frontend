@@ -176,21 +176,18 @@
 
 
           <div class="col-md-6">
-            <label class="required-input">ОТЧЕСТВО</label>
+            <label>ОТЧЕСТВО</label>
             <div class="input-container">
               <mat-form-field class="example-full-width">
                 <mat-label>Отчество</mat-label>
                 <input
                   type="text"
                   matInput
-                  formControlName="lastName"
+                  formControlName="middleName"
                   placeholder="Отчество"
                 >
               </mat-form-field>
               <br>
-              <mat-error *ngIf="form.get('user.lastName').touched && form.get('user.lastName').hasError('required')">
-                Данное поле не может быть пустым
-              </mat-error>
             </div>
           </div>
 

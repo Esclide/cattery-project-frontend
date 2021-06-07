@@ -3,7 +3,6 @@ import {Cat} from "../../../../core/interfaces/cat";
 import {tap} from "rxjs/operators";
 import {ActivatedRoute, Router} from "@angular/router";
 import {CatService} from "../../../../core/services/cat.service";
-import {ProfileService} from "../../../../core/services/profile.service";
 
 @Component({
   selector: 'app-create-cat',
@@ -24,7 +23,7 @@ export class CreateCatComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  submit(cats: Cat[]): void {
+  submit(cats: Cat): void {
     console.log(cats)
     for (const cat of Object.values(cats)) {
       this.catService.create(cat).pipe(
